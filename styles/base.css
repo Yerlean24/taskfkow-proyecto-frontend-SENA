@@ -1,3 +1,4 @@
+@import "tokens.css";
 /* ── Reset global ── */
 *,
 *::before,
@@ -9,9 +10,9 @@
 
 /* ── Cuerpo ── */
 body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background-color: #f1f5f9;
-  color: #1e293b;
+  font-family: var(--fuente-base);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
   min-height: 100vh;
   padding: 20px 16px; /* padding del body = margen de la página */
 }
@@ -92,7 +93,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  box-shadow: var(--sombra-sm);
+  transform: translateY(0);
+  transition: box-shadow var(--trans-base), transform var(--trans-base);
+  cursor: pointer;
 }
+.tarjeta-tarea:hover {
+    box-shadow: var(--sombra-md);
+    transform: translateY(-2px);
+  }
 .tarea-etiqueta {
   display: inline-block; /* inline-block para que respete padding */
   font-size: 0.7rem;
@@ -127,15 +136,11 @@ body {
   color: white;
 }
 .tarea-prioridad--alta {
-  background: #dc2626;
+  background: var(--prioridad-alta);
 }
 .tarea-prioridad--media {
-  background: #ea580c;
+  background: var(--prioridad-media);
 }
 .tarea-prioridad--baja {
-  background: #16a34a;
-}
-.tarea-fecha {
-  font-size: 0.75rem;
-  color: #94a3b8;
+  background: var(--prioridad-baja);
 }
