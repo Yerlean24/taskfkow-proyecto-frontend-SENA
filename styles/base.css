@@ -25,18 +25,21 @@ body {
 /* ── Header ── */
 .panel-header {
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--color-marca);
+  border-radius: var(--radio-md);
   gap: 12px;
-  padding: 20px 24px; /* relleno interior */
-  background: white;
-  border-radius: 12px;
-  border-left: 5px solid #0f172a; /* borde solo izquierdo */
-  margin-bottom: 24px; /* margen exterior inferior */
+  flex-wrap: wrap; /* en móvil el contador baja si no cabe */
 }
 .panel-titulo {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
   font-weight: 800;
-  color: #0f172a;
+  font-size: var(--text-xl);
 }
 .panel-subtitulo {
   font-size: 0.875rem;
@@ -44,25 +47,27 @@ body {
 }
 
 /* ── Tablero — una columna en móvil ── */
-.panel-tablero {
-  display: grid;
-  grid-template-columns: 1fr;
+.panel-columnas {
+  display: flex;
   gap: 16px;
+  align-items: flex-start;
 }
 /* ── Columna Kanban ── */
-.columna-kanban {
-  background: white;
-  border-radius: 12px;
-  padding: 16px; /* relleno interior */
-  border: 1px solid #e2e8f0;
+.columna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0; /* evita overflow cuando el contenido es largo */
 }
-.columna-cabecera {
+.columna-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #f1f5f9;
-  margin-bottom: 12px;
+  padding: 12px 16px;
+  background: var(--color-superficie);
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde);
 }
 .columna-titulo {
   font-size: 0.82rem;
@@ -70,51 +75,57 @@ body {
   text-transform: uppercase;
   color: #475569;
 }
-.columna-contador {
-  font-size: 0.8rem;
-  font-weight: 700;
-  background: #f1f5f9;
-  color: #64748b;
-  padding: 2px 8px;
-  border-radius: 20px;
+.panel-contador {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  color: rgba(71, 71, 71, 0.7);
 }
 .columna-lista {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
 /* ── Tarjeta de tarea ── */
-.tarjeta-tarea {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 12px 14px; /* padding = espacio interior de la tarjeta */
+.tarea-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--color-superficie);
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde);
   box-shadow: var(--sombra-sm);
-  transform: translateY(0);
   transition: box-shadow var(--trans-base), transform var(--trans-base);
-  cursor: pointer;
 }
-.tarjeta-tarea:hover {
-    box-shadow: var(--sombra-md);
-    transform: translateY(-2px);
-  }
+.tarea-card:hover {
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+}
+.tarea-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
 .tarea-etiqueta {
-  display: inline-block; /* inline-block para que respete padding */
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #64748b;
-  background: #e2e8f0;
+  font-size: var(--text-xs);
+  background: var(--color-fondo);
   padding: 2px 8px;
   border-radius: 20px;
+  color: var(--color-texto-sec);
+}
+.tarea-fecha {
+  font-size: var(--text-xs);
+  color: var(--color-texto-sec);
 }
 .tarea-titulo {
-  font-size: 0.9rem;
+  flex: 1;
+  font-size: var(--text-sm);
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-texto);
+  line-height: 1.4;
 }
 .tarea-desc {
   font-size: 0.8rem;
@@ -125,7 +136,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 4px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .tarea-prioridad {
   display: inline-block;
